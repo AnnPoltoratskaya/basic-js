@@ -20,16 +20,17 @@ function transform(arr) {
   for (let i = 0; i < arr.length; i++) {
     switch (arr[i]) {
       case '--discard-next':
-        if (arr[i+1]) i++;
+        if (arr[i + 1]) i++;
+        if (String(arr[i + 1]).slice(0, 2) === '--') i++;
         break;
       case '--discard-prev':
-        if (arr.length) newArr.pop();
+        if (i > 0) newArr.pop();
         break;
       case '--double-next':
-        if (arr[i+1]) newArr.push(arr[i+1]);
+        if (arr[i + 1]) newArr.push(arr[i + 1]);
         break;
       case '--double-prev':
-        if (arr.length) newArr.push(arr[i-1]);
+        if (i > 0) newArr.push(arr[i - 1]);
         break;
       default:
         newArr.push(arr[i]);
